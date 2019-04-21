@@ -1,3 +1,5 @@
+import Test.Hspec
+
 type Ficha = (Int, Int)
 
 -- Primera solución, rebotada por no utilizar pattern matching
@@ -19,3 +21,11 @@ type Ficha = (Int, Int)
 mismaFicha (ficha1Valor1, ficha1Valor2) (ficha2Valor1, ficha2Valor2) =
   ((ficha1Valor1, ficha1Valor2) == (ficha2Valor1, ficha2Valor2))  ||
   ((ficha1Valor1 == ficha2Valor2) && (ficha1Valor2 == ficha2Valor1))
+
+runTests = hspec $ do
+    describe "Pruebas para el ejercicio del domino." $ do
+        it "(1, 2) = (1, 2)" $ do
+            mismaFicha (1, 2) (2, 1) `shouldBe` True
+
+        it "(1, 2) = (2, 1)" $ do
+            mismaFicha (1, 2) (2, 1) `shouldBe` True
